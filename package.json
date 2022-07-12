@@ -1,0 +1,22 @@
+{
+  "name": "2-screen-interaction-ver1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xingtitan/Demo_multi_objects.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Xingtitan/Demo_multi_objects/issues"
+  },
+  "homepage": "https://github.com/Xingtitan/Demo_multi_objects#readme",
+  "dependencies": {
+    "gh-pages": "^4.0.0"
+  }
+}

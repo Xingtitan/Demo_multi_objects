@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset=UTF-8 />
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+  <div id="left">
+  </div>
+  <div id="right">
+  </div>
+
+  <script type="module">
+
+    import * as THREE from './build/three.module.js';
+    import { OrbitControls } from './js/OrbitControls.js';
+    import Stats from './js/stats.module.js';
+
+    let sceneL, cameraL, rendererL, controlsL;
+    let sceneR, cameraR, rendererR, controlsR;
+
+    function leftObject() {
+      /* Create a scene with a camera and a render for the first element. */
+      // Create scene and camera.
+      sceneL = new THREE.Scene();
+      cameraL = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+      cameraL.position.set(0, 0, 200);
+      cameraL.lookAt(0, 0, 0);
+
+      // Create renderer.
+      const containerL = document.getElementById("left");
+      rendererL = new THREE.WebGLRenderer({ antialias: true });
+      rendererL.setSize(window.innerWidth, window.innerHeight);
+      containerL.appendChild(rendererL.domElement);
+
+      controlsL = new OrbitControls(cameraL, rendererL.domElement);
+
+
+      const geometryL = new THREE.SphereGeometry(50, 32, 32);
+      const materialL = new THREE.MeshBasicMaterial({
+        color: 0xffff00,
+        wireframe: true,
+      });
+      const sphereL = new THREE.Mesh(geometryL, materialL);
+      sceneL.add(sphereL);
+
+      const onResize = () => {
+        rendererL.setSize(window.innerWidth, window.innerHeight);
+        cameraL.aspect = window.innerWidth / window.innerHeight;
+        cameraL.updateProjectionMatrix();
+      };
+
+      const animate = () => {
+        requestAnimationFrame(animate);
+        sphereL.rotation.y += 0.002;
+        rendererL.render(sceneL, cameraL);
+      };
+
+      animate();
+    };
+
+    function rightObject() {
+      /* Create a scene with a camera and a render for the first element. */
+      // Create scene and camera.
+      sceneR = new THREE.Scene();
+      cameraR = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+      cameraR.position.set(0, 0, 200);
+      cameraR.lookAt(0, 0, 0);
+
+      // Create renderer.
+      const containerR = document.getElementById("right");
+      rendererR = new THREE.WebGLRenderer({ antialias: true });
+      rendererR.setSize(window.innerWidth, window.innerHeight);
+      containerR.appendChild(rendererR.domElement);
+
+      controlsR = new OrbitControls(cameraR, rendererR.domElement);
+
+
+      const geometryR = new THREE.SphereGeometry(50, 32, 32);
+      const materialR = new THREE.MeshBasicMaterial({
+        color: 0x42b6f5,
+        wireframe: true,
+      });
+      const sphereR = new THREE.Mesh(geometryR, materialR);
+      sceneR.add(sphereR);
+
+      const onResize = () => {
+        rendererR.setSize(window.innerWidth, window.innerHeight);
+        cameraR.aspect = window.innerWidth / window.innerHeight;
+        cameraR.updateProjectionMatrix();
+      };
+
+      const animate = () => {
+        requestAnimationFrame(animate);
+        sphereR.rotation.y += 0.002;
+        rendererR.render(sceneR, cameraR);
+      };
+
+      animate();
+    };
+
+    leftObject();
+    rightObject();
+
+  </script>
+</body>
+
+</html>
